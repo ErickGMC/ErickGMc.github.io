@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+h1 {
+    font-size: 2em;
+    color: #ff7f50;
+    margin-top: 20px;
+    animation: bounce 1.5s infinite; /* Efecto de rebote */
+}
+
+.progress-container {
+    width: 80%;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    margin: 20px auto;
+    height: 90px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: red;
+    border-radius: 25px;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+/* Animación de brillo cuando la barra está completa */
+#progress-bar.complete {
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+    }
+    to {
+        box-shadow: 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00;
+    }
+}
+
+.add-option {
+    margin: 20px;
+}
+
+.add-option input {
+    padding: 10px;
+    width: 200px;
+    margin-right: 10px;
+    border: 2px solid #ff7f50;
+    border-radius: 8px;
+}
+
+.add-option button {
+    padding: 10px;
+    font-size: 1em;
+    background-color: #ff7f50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-option button:hover {
+    background-color: #ff4500;
+}
+
+/* Contenedor de opciones en filas de tres con menor separación */
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+}
+
+.options-container .option-item {
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 10px;
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+    background-color: #ffeb3b;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.options-container .option-item.active {
+    background-color: #4caf50;
+    color: white;
+    transform: scale(1.05); /* Hace que crezca un poco al ser activo */
+}
+
+.options-container .option-item:hover {
+    background-color: #ffd54f;
+    transform: scale(1.1);
+}
+
+.edit-button, .delete-button {
+    display: none;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 0.9em;
+    background-color: #ff7f50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons-visible .edit-button, .buttons-visible .delete-button {
+    display: inline-block;
+}
+
+/* Animación de rebote */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}

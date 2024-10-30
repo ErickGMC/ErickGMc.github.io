@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progreso de Participación</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>¡Participación Activa!</h1>
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+    
+    <!-- Formulario para añadir nuevas opciones -->
+    <div class="add-option">
+        <input type="text" id="optionName" placeholder="Nombre del estudiante">
+        <button onclick="addOption()">Agregar Nombre</button>
+        <button onclick="toggleButtons()">Ocultar/Mostrar Botones</button>
+    </div>
+    
+    <!-- Contenedor de opciones dinámicas -->
+    <div id="options-container" class="options-container">
+        <!-- Opciones se agregarán aquí -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
