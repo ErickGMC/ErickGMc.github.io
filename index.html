@@ -2,26 +2,53 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progreso de Participación</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>¡Participación Activa!</h1>
-    <div class="progress-container">
-        <div id="progress-bar"></div>
+    <!-- Título de la página centrado con respecto a la barra de progreso -->
+    <div class="title-container">
+        <h1 class="page-title">¡Participación Activa!</h1>
     </div>
-    
-    <!-- Formulario para añadir nuevas opciones -->
-    <div class="add-option">
-        <input type="text" id="optionName" placeholder="Nombre del estudiante">
-        <button onclick="addOption()">Agregar Nombre</button>
-        <button onclick="toggleButtons()">Ocultar/Mostrar Botones</button>
-    </div>
-    
-    <!-- Contenedor de opciones dinámicas -->
-    <div id="options-container" class="options-container">
-        <!-- Opciones se agregarán aquí -->
+
+    <!-- Contenedor principal con dos columnas -->
+    <div class="main-container">
+        <!-- Columna izquierda con cuadro de texto, botón y normas de convivencia -->
+        <div class="left-column">
+            <!-- Instrucción y cuadro de texto para agregar estudiante -->
+            <div class="add-option">
+                <p>Ingrese el nombre del estudiante (máximo 15 caracteres):</p>
+                <input type="text" id="optionName" placeholder="Nombre" maxlength="15" onkeypress="handleEnter(event)">
+                <button onclick="addStudent()">Agregar Estudiante</button>
+            </div>
+            
+            <!-- Normas de convivencia -->
+            <div class="normas-container">
+                <h2>Normas de Convivencia</h2>
+                <ul>
+                    <li>🗣️ <strong>Respeto mutuo</strong>: Escuchar y respetar turnos y opiniones.</li>
+                    <li>✋ <strong>Orden en la participación</strong>: Levantar la mano para hablar.</li>
+                    <li>💻 <strong>Cuidado del equipo tecnológico</strong>: Usar con responsabilidad.</li>
+                    <li>🌐 <strong>Uso adecuado de recursos digitales</strong>: Solo sitios autorizados.</li>
+                    <li>🤝 <strong>Responsabilidad en el trabajo colaborativo</strong>: Ayudar y cumplir tareas.</li>
+                    <li>🧹 <strong>Mantenimiento del espacio limpio y ordenado</strong>: Dejar todo limpio y en orden.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Columna derecha con barra de progreso principal y lista de estudiantes -->
+        <div class="content-column">
+            <!-- Barra de progreso principal -->
+            <div class="main-progress-container">
+                <div id="main-progress-bar"></div>
+                <span id="main-progress-text">0%</span>
+            </div>
+
+            <!-- Contenedor de estudiantes -->
+            <div id="students-container" class="students-container">
+                <!-- Cada estudiante aparecerá aquí con sus botones y barra de progreso -->
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

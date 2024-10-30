@@ -1,113 +1,135 @@
-let buttonsVisible = true;
-let activeOptionsCount = 0; // Contador de opciones activas para la barra de progreso
+let totalParticipatingStudents = 0;
+let totalStudents = 0;
 
-// Función para actualizar el progreso y cambiar el color de la barra
-function updateProgress() {
-    const options = document.querySelectorAll('.option-item');
-    const progressBar = document.getElementById('progress-bar');
-    const totalOptions = options.length;
-    
-    // Calcular el progreso como porcentaje
-    const progress = (activeOptionsCount / totalOptions) * 100;
-    progressBar.style.width = `${progress}%`;
+const progressBarColors = ['#4db6ac', '#ff8a65', '#ba68c8', '#64b5f6', '#ffd54f'];
+let colorIndex = 0;
 
-    // Cambiar el color de la barra de progreso de rojo a verde
-    const red = Math.max(0, 255 - Math.floor(2.55 * progress));
-    const green = Math.min(128, Math.floor(1.28 * progress));
-    progressBar.style.backgroundColor = `rgb(${red}, ${green}, 0)`;
+function updateMainProgress() {
+    const mainProgressBar = document.getElementById('main-progress-bar');
+    const mainProgressText = document.getElementById('main-progress-text');
+    const progressPercentage = totalStudents ? Math.floor((totalParticipatingStudents / totalStudents) * 100) : 0;
+    mainProgressBar.style.width = `${progressPercentage}%`;
+    mainProgressText.textContent = `${progressPercentage}%`;
+}
 
-    // Si el progreso está completo, añadir la animación de brillo
-    if (progress === 100) {
-        progressBar.classList.add("complete");
-    } else {
-        progressBar.classList.remove("complete");
+function handleEnter(event) {
+    if (event.key === 'Enter') {
+        addStudent();
     }
 }
 
-// Función para agregar una nueva opción
-function addOption() {
-    const optionName = document.getElementById('optionName').value.trim();
-    const optionsContainer = document.getElementById('options-container');
+function addStudent() {
+    const studentName = document.getElementById('optionName').value.trim();
+    const studentsContainer = document.getElementById('students-container');
 
-    if (optionName === "") {
-        alert("Por favor, ingrese un nombre para la opción.");
+    if (studentName === "") {
+        alert("Por favor, ingrese el nombre del estudiante.");
         return;
     }
 
-    // Crear un botón que representa una opción
-    const optionItem = document.createElement("div");
-    optionItem.className = "option-item";
-    optionItem.textContent = optionName;
+    const studentColor = progressBarColors[colorIndex];
+    colorIndex = (colorIndex + 1) % progressBarColors.length;
 
-    // Alternar color y progreso al hacer clic
-    optionItem.onclick = () => {
-        if (optionItem.classList.contains("active")) {
-            optionItem.classList.remove("active");
-            activeOptionsCount--; // Reducir el contador activo
-        } else {
-            optionItem.classList.add("active");
-            activeOptionsCount++; // Aumentar el contador activo
-        }
-        updateProgress(); // Actualizar la barra de progreso
-    };
+    const studentItem = document.createElement("div");
+    studentItem.className = "student-item";
 
-    // Crear botones de edición y eliminación
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "student-name";
+    nameSpan.textContent = studentName;
+
+    const progressButton = document.createElement("button");
+    progressButton.className = "progress-button";
+    progressButton.textContent = "+";
+
+    const decreaseButton = document.createElement("button");
+    decreaseButton.className = "progress-button";
+    decreaseButton.textContent = "-";
+
     const editButton = document.createElement("button");
-    editButton.textContent = "Editar";
-    editButton.className = "edit-button";
-    editButton.onclick = (event) => {
-        event.stopPropagation();
-        editOption(optionItem);
-    };
+    editButton.className = "progress-button";
+    editButton.textContent = "✎";
 
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Eliminar";
-    deleteButton.className = "delete-button";
-    deleteButton.onclick = (event) => {
-        event.stopPropagation();
-        deleteOption(optionItem);
+    deleteButton.className = "progress-button";
+    deleteButton.textContent = "🗑️";
+
+    let studentProgress = 0;
+    let hasParticipated = false;
+
+    const participationCount = document.createElement("span");
+    participationCount.className = "participation-count";
+    participationCount.textContent = "0";
+
+    const progressContainer = document.createElement("div");
+    progressContainer.className = "student-progress-container";
+    const progressBar = document.createElement("div");
+    progressBar.className = "student-progress-bar";
+    progressBar.style.backgroundColor = studentColor;
+    const progressText = document.createElement("span");
+    progressText.className = "student-progress-text";
+    progressText.textContent = "0 / 20";
+
+    progressContainer.appendChild(progressBar);
+    progressContainer.appendChild(progressText);
+
+    progressButton.onclick = () => {
+        if (studentProgress < 20) {
+            studentProgress++;
+            const studentPercentage = (studentProgress / 20) * 100;
+            progressBar.style.width = `${studentPercentage}%`;
+            progressText.textContent = `${studentProgress} / 20`;
+            participationCount.textContent = studentProgress;
+
+            if (!hasParticipated) {
+                totalParticipatingStudents++;
+                hasParticipated = true;
+                updateMainProgress();
+            }
+        }
     };
 
-    // Añadir botones de edición y eliminación
-    optionItem.appendChild(editButton);
-    optionItem.appendChild(deleteButton);
+    decreaseButton.onclick = () => {
+        if (studentProgress > 0) {
+            studentProgress--;
+            const studentPercentage = (studentProgress / 20) * 100;
+            progressBar.style.width = `${studentPercentage}%`;
+            progressText.textContent = `${studentProgress} / 20`;
+            participationCount.textContent = studentProgress;
 
-    // Añadir el botón de opción al contenedor de opciones
-    optionsContainer.appendChild(optionItem);
+            if (studentProgress === 0 && hasParticipated) {
+                totalParticipatingStudents--;
+                hasParticipated = false;
+                updateMainProgress();
+            }
+        }
+    };
 
-    // Limpiar el campo de texto
+    editButton.onclick = () => {
+        const newName = prompt("Editar nombre del estudiante:", studentName);
+        if (newName) nameSpan.textContent = newName;
+    };
+
+    deleteButton.onclick = () => {
+        studentsContainer.removeChild(studentItem);
+        if (hasParticipated) {
+            totalParticipatingStudents--;
+            updateMainProgress();
+        }
+        totalStudents--;
+    };
+
+    studentItem.appendChild(decreaseButton);
+    studentItem.appendChild(progressButton);
+    studentItem.appendChild(nameSpan);
+    studentItem.appendChild(editButton);
+    studentItem.appendChild(deleteButton);
+    studentItem.appendChild(progressContainer);
+    studentItem.appendChild(participationCount);
+    studentsContainer.appendChild(studentItem);
+
+    totalStudents++;
+    updateMainProgress();
+
     document.getElementById('optionName').value = "";
     document.getElementById('optionName').focus();
-    updateProgress();
 }
-
-// Función para editar una opción existente
-function editOption(optionItem) {
-    const optionName = optionItem.childNodes[0].textContent.trim();
-    document.getElementById('optionName').value = optionName;
-    document.getElementById('optionName').focus();
-    editElement = optionItem;
-}
-
-// Función para eliminar una opción
-function deleteOption(optionItem) {
-    if (optionItem.classList.contains("active")) {
-        activeOptionsCount--; // Reducir el contador activo si el elemento estaba activo
-    }
-    optionItem.remove();
-    updateProgress();
-}
-
-// Función para alternar visibilidad de los botones de edición y eliminación
-function toggleButtons() {
-    buttonsVisible = !buttonsVisible;
-    const optionsContainer = document.getElementById("options-container");
-    optionsContainer.classList.toggle("buttons-visible", buttonsVisible);
-}
-
-// Evento para detectar "Enter" y agregar opción automáticamente
-document.getElementById('optionName').addEventListener('keydown', function(event) {
-    if (event.key === "Enter") {
-        addOption();
-    }
-});
