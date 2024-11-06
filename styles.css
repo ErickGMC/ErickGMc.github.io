@@ -11,7 +11,6 @@ body {
     min-height: 100vh;
 }
 
-/* Título centrado con respecto a la barra de progreso */
 .title-container {
     display: flex;
     justify-content: center;
@@ -28,16 +27,15 @@ body {
 }
 
 .page-title {
-    font-family: 'Merriweather', serif; /* Fuente para el título principal */
+    font-family: 'Merriweather', serif;
     font-size: 2em;
     color: #ff7043;
     margin: 0;
     text-align: center;
 }
 
-/* Descripción de la barra de progreso */
 .progress-description {
-    font-family: 'Roboto', sans-serif; /* Fuente para el texto general */
+    font-family: 'Roboto', sans-serif;
     color: #1c313a;
     font-size: 1.1em;
     margin-bottom: 10px;
@@ -45,7 +43,6 @@ body {
     text-align: left;
 }
 
-/* Contenedor principal con dos columnas */
 .main-container {
     display: flex;
     width: 100%;
@@ -70,7 +67,6 @@ body {
     }
 }
 
-/* Columna izquierda fija y centrada verticalmente */
 .left-column {
     width: 30%;
     position: fixed;
@@ -115,6 +111,7 @@ body {
     margin: 10px auto;
 }
 
+/* Botón "Agregar Estudiante" */
 .add-option button {
     background-color: #ffb300;
     color: #fff;
@@ -123,20 +120,29 @@ body {
     transition: background-color 0.3s;
     display: block;
     margin: 0 auto;
+    margin-bottom: 15px;
 }
 
 .add-option button:hover {
     background-color: #ff8f00;
 }
 
-/* Añadir margen para separar verticalmente los botones */
+/* Botón "Reiniciar Progreso" en rojo */
 .reset-button {
-    margin-top: 10px; /* Añade una separación vertical entre los botones */
+    background-color: #f44336 !important; /* Cambiado a rojo */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 5px;
 }
 
-/* Destacar Criterios de Evaluación */
+.reset-button:hover {
+    background-color: #d32f2f !important;
+}
+
 .normas-container {
-    font-family: 'Open Sans', sans-serif; /* Fuente para los criterios de evaluación */
+    font-family: 'Open Sans', sans-serif;
     background-color: #ffecb3;
     border: 2px solid #ffb300;
     border-radius: 15px;
@@ -165,7 +171,7 @@ body {
 
 .normas-container li {
     margin: 10px 0;
-    font-size: 1.1em;
+    font-size: 1.3em; /* Aumentado el tamaño de letra */
     color: #424242;
     background-color: #fff8e1;
     border-radius: 8px;
@@ -177,14 +183,12 @@ body {
     background-color: #ffe082;
 }
 
-/* Columna derecha que se ubica al lado de la izquierda */
 .right-column {
     width: 65%;
     margin-left: auto;
     padding-left: 35%;
 }
 
-/* Barra de progreso principal */
 .main-progress-container {
     width: 100%;
     background-color: #cfd8dc;
@@ -226,12 +230,11 @@ body {
     width: 100%;
 }
 
-/* Estilos para cada estudiante */
 .student-item {
     display: flex;
     align-items: center;
     width: 90%;
-    margin: 10px 0;
+    margin: 5px 0;
     padding: 5px;
     border: 1px solid #81c784;
     border-radius: 8px;
@@ -289,11 +292,11 @@ body {
     font-size: 0.9em;
 }
 
-.progress-button {
-    font-family: 'Roboto', sans-serif;
-    flex: 0 0 40px;
-    padding: 5px;
-    background-color: #ffb300;
+.progress-button.increment,
+.progress-button.decrement {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -302,6 +305,18 @@ body {
     margin: 0 2px;
 }
 
-.progress-button:hover {
-    background-color: #ff8f00;
+.progress-button.increment {
+    background-color: #4caf50;
+}
+
+.progress-button.increment:hover {
+    background-color: #388e3c;
+}
+
+.progress-button.decrement {
+    background-color: #f44336;
+}
+
+.progress-button.decrement:hover {
+    background-color: #d32f2f;
 }

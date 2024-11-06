@@ -38,11 +38,11 @@ function addStudent(name = "", progress = 0) {
     nameSpan.textContent = studentName;
 
     const progressButton = document.createElement("button");
-    progressButton.className = "progress-button";
+    progressButton.className = "progress-button increment"; // Clase para el botón "+"
     progressButton.textContent = "+";
 
     const decreaseButton = document.createElement("button");
-    decreaseButton.className = "progress-button";
+    decreaseButton.className = "progress-button decrement"; // Clase para el botón "-"
     decreaseButton.textContent = "-";
 
     const editButton = document.createElement("button");
@@ -118,13 +118,15 @@ function addStudent(name = "", progress = 0) {
     };
 
     deleteButton.onclick = () => {
-        studentsContainer.removeChild(studentItem);
-        if (hasParticipated) {
-            totalParticipatingStudents--;
+        if (confirm("¿Estás seguro de que deseas eliminar este estudiante?")) {
+            studentsContainer.removeChild(studentItem);
+            if (hasParticipated) {
+                totalParticipatingStudents--;
+            }
+            totalStudents--;
+            updateMainProgress();
+            saveData();
         }
-        totalStudents--;
-        updateMainProgress();
-        saveData();
     };
 
     studentItem.appendChild(decreaseButton);
