@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     background-color: #f0f4c3;
     color: #333;
@@ -28,6 +28,7 @@ body {
 }
 
 .page-title {
+    font-family: 'Merriweather', serif; /* Fuente para el título principal */
     font-size: 2em;
     color: #ff7043;
     margin: 0;
@@ -36,6 +37,7 @@ body {
 
 /* Descripción de la barra de progreso */
 .progress-description {
+    font-family: 'Roboto', sans-serif; /* Fuente para el texto general */
     color: #1c313a;
     font-size: 1.1em;
     margin-bottom: 10px;
@@ -62,17 +64,19 @@ body {
         position: static !important;
     }
     
-    .content-column {
+    .right-column {
         width: 100% !important;
         padding-left: 0 !important;
     }
 }
 
-/* Columna izquierda fija */
+/* Columna izquierda fija y centrada verticalmente */
 .left-column {
     width: 30%;
-    position: sticky;
-    top: 20px;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
     align-self: flex-start;
 }
 
@@ -86,6 +90,7 @@ body {
 }
 
 .add-option p {
+    font-family: 'Roboto', sans-serif;
     margin: 0 0 8px;
     font-size: 0.9em;
     color: #424242;
@@ -93,6 +98,7 @@ body {
 
 .add-option input,
 .add-option button {
+    font-family: 'Roboto', sans-serif;
     width: calc(100% - 20px);
     padding: 10px;
     font-size: 1em;
@@ -123,17 +129,32 @@ body {
     background-color: #ff8f00;
 }
 
-/* Normas de convivencia */
+/* Añadir margen para separar verticalmente los botones */
+.reset-button {
+    margin-top: 10px; /* Añade una separación vertical entre los botones */
+}
+
+/* Destacar Criterios de Evaluación */
 .normas-container {
-    background-color: #e0f7fa;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans', sans-serif; /* Fuente para los criterios de evaluación */
+    background-color: #ffecb3;
+    border: 2px solid #ffb300;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     text-align: left;
+    transition: transform 0.3s;
+}
+
+.normas-container:hover {
+    transform: scale(1.02);
 }
 
 .normas-container h2 {
-    color: #00796b;
+    color: #d84315;
+    font-size: 1.8em;
+    text-shadow: 1px 1px #ff7043;
+    margin-bottom: 15px;
 }
 
 .normas-container ul {
@@ -143,15 +164,24 @@ body {
 }
 
 .normas-container li {
-    margin: 8px 0;
-    font-size: 0.95em;
+    margin: 10px 0;
+    font-size: 1.1em;
     color: #424242;
+    background-color: #fff8e1;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Columna derecha */
-.content-column {
-    width: 70%;
-    padding-left: 20px;
+.normas-container li:hover {
+    background-color: #ffe082;
+}
+
+/* Columna derecha que se ubica al lado de la izquierda */
+.right-column {
+    width: 65%;
+    margin-left: auto;
+    padding-left: 35%;
 }
 
 /* Barra de progreso principal */
@@ -181,6 +211,7 @@ body {
 }
 
 #main-progress-text {
+    font-family: 'Roboto', sans-serif;
     position: relative;
     font-weight: bold;
     color: #1c313a;
@@ -195,6 +226,7 @@ body {
     width: 100%;
 }
 
+/* Estilos para cada estudiante */
 .student-item {
     display: flex;
     align-items: center;
@@ -209,33 +241,8 @@ body {
     flex-wrap: wrap;
 }
 
-@media (max-width: 576px) {
-    .student-item {
-        width: 95%;
-        padding: 10px 5px;
-    }
-    
-    .student-name {
-        width: 100%;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    
-    .student-progress-container {
-        width: 100%;
-        margin: 10px 0;
-    }
-    
-    .progress-button {
-        margin: 5px;
-    }
-    
-    .participation-count {
-        margin: 5px;
-    }
-}
-
 .student-name {
+    font-family: 'Roboto', sans-serif;
     flex: 1;
     text-align: left;
     padding-left: 10px;
@@ -244,6 +251,7 @@ body {
 }
 
 .participation-count {
+    font-family: 'Roboto', sans-serif;
     flex: 0 0 40px;
     text-align: right;
     font-size: 1.1em;
@@ -271,6 +279,7 @@ body {
 }
 
 .student-progress-text {
+    font-family: 'Roboto', sans-serif;
     position: absolute;
     width: 100%;
     text-align: center;
@@ -281,36 +290,18 @@ body {
 }
 
 .progress-button {
+    font-family: 'Roboto', sans-serif;
     flex: 0 0 40px;
     padding: 5px;
-    background-color: #ffb74d;
-    color: white;
+    background-color: #ffb300;
+    color: #fff;
     border: none;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    font-weight: bold;
-    margin-right: 5px;
     transition: background-color 0.3s;
+    margin: 0 2px;
 }
 
 .progress-button:hover {
-    background-color: #ff8a65;
-}
-
-/* Ajustes adicionales para dispositivos muy pequeños */
-@media (max-width: 360px) {
-    .page-title {
-        font-size: 1.5em;
-    }
-    
-    .add-option input,
-    .add-option button {
-        font-size: 0.9em;
-    }
-    
-    .progress-button {
-        flex: 0 0 35px;
-        font-size: 0.9em;
-    }
+    background-color: #ff8f00;
 }

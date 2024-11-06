@@ -4,53 +4,39 @@
     <meta charset="UTF-8">
     <title>Progreso de Participación</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Título de la página centrado con respecto a la barra de progreso -->
     <div class="title-container">
         <h1 class="page-title">¡Participación Activa!</h1>
     </div>
 
-    <!-- Contenedor principal con dos columnas -->
     <div class="main-container">
-        <!-- Columna izquierda con cuadro de texto, botón y normas de convivencia -->
         <div class="left-column">
-            <!-- Instrucción y cuadro de texto para agregar estudiante -->
             <div class="add-option">
                 <p>Ingrese el nombre del estudiante (máximo 15 caracteres):</p>
                 <input type="text" id="optionName" placeholder="Nombre" maxlength="15" onkeypress="handleEnter(event)">
                 <button onclick="addStudent()">Agregar Estudiante</button>
+                <button onclick="resetProgress()" class="reset-button">Reiniciar Progreso</button>
             </div>
             
-            <!-- Normas de convivencia -->
             <div class="normas-container">
-                <h2>Normas de Convivencia</h2>
+                <h2>Criterios de Evaluación</h2>
                 <ul>
-                    <li>🗣️ <strong>Respeto mutuo</strong>: Escuchar y respetar turnos y opiniones.</li>
-                    <li>✋ <strong>Orden en la participación</strong>: Levantar la mano para hablar.</li>
-                    <li>💻 <strong>Cuidado del equipo tecnológico</strong>: Usar con responsabilidad.</li>
-                    <li>🌐 <strong>Uso adecuado de recursos digitales</strong>: Solo sitios autorizados.</li>
-                    <li>🤝 <strong>Responsabilidad en el trabajo colaborativo</strong>: Ayudar y cumplir tareas.</li>
-                    <li>🧹 <strong>Mantenimiento del espacio limpio y ordenado</strong>: Dejar todo limpio y en orden.</li>
+                    <li>💡 1. Propone una solución viable para el problema.</li>
+                    <li>🎨 2. Dibuja y describe la propuesta en la ficha de trabajo.</li>
+                    <li>🌍 3. Presenta su propuesta justificando su impacto en el manejo de residuos.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Columna derecha con barra de progreso principal y lista de estudiantes -->
-        <div class="content-column">
-            <!-- Texto descriptivo de la barra de progreso -->
+        <div class="right-column">
             <p class="progress-description">Porcentaje de participación de la clase</p>
-            
-            <!-- Barra de progreso principal -->
             <div class="main-progress-container">
                 <div id="main-progress-bar"></div>
                 <span id="main-progress-text">0%</span>
             </div>
-
-            <!-- Contenedor de estudiantes -->
-            <div id="students-container" class="students-container">
-                <!-- Cada estudiante aparecerá aquí con sus botones y barra de progreso -->
-            </div>
+            <div id="students-container" class="students-container"></div>
         </div>
     </div>
 
