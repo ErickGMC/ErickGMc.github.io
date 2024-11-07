@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¿Qué está sucediendo en nuestra escuela?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f7;
+            color: #333;
+        }
+        
+        h1 {
+            font-size: 2em;
+            color: #d84315;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .images-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 500px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .prompt {
+            font-size: 1.2em;
+            color: #444;
+            margin: 20px 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Qué está sucediendo en nuestra escuela?</h1>
+
+    <div class="images-row">
+        <div class="image-container">
+            <img src="ruta/a/imagen1.jpg" alt="Imagen de basura en el piso">
+            <p class="description">Observa esta imagen y piensa en lo que está ocurriendo. ¿Por qué crees que hay basura aquí?</p>
+        </div>
+
+        <div class="image-container">
+            <img src="ruta/a/imagen2.jpg" alt="Imagen de mal manejo de residuos">
+            <p class="description">Observa esta escena. ¿Qué te hace pensar esta imagen sobre el manejo de residuos en la escuela?</p>
+        </div>
+    </div>
+
+    <p class="prompt">Reflexiona sobre estas imágenes y prepárate para compartir tus ideas.</p>
+</body>
+</html>
