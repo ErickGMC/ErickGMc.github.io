@@ -67,20 +67,20 @@ function addStudent(name = "", progress = 0) {
     progressBar.style.backgroundColor = studentColor;
     const progressText = document.createElement("span");
     progressText.className = "student-progress-text";
-    progressText.textContent = `${studentProgress} / 20`;
+    progressText.textContent = `${studentProgress} / 10`;
 
     progressContainer.appendChild(progressBar);
     progressContainer.appendChild(progressText);
 
-    const initialPercentage = (studentProgress / 20) * 100;
+    const initialPercentage = (studentProgress / 10) * 100;
     progressBar.style.width = `${initialPercentage}%`;
 
     progressButton.onclick = () => {
-        if (studentProgress < 20) {
+        if (studentProgress < 10) {
             studentProgress++;
-            const studentPercentage = (studentProgress / 20) * 100;
+            const studentPercentage = (studentProgress / 10) * 100;
             progressBar.style.width = `${studentPercentage}%`;
-            progressText.textContent = `${studentProgress} / 20`;
+            progressText.textContent = `${studentProgress} / 10`;
             participationCount.textContent = studentProgress;
 
             if (!hasParticipated && studentProgress > 0) {
@@ -95,9 +95,9 @@ function addStudent(name = "", progress = 0) {
     decreaseButton.onclick = () => {
         if (studentProgress > 0) {
             studentProgress--;
-            const studentPercentage = (studentProgress / 20) * 100;
+            const studentPercentage = (studentProgress / 10) * 100;
             progressBar.style.width = `${studentPercentage}%`;
-            progressText.textContent = `${studentProgress} / 20`;
+            progressText.textContent = `${studentProgress} / 10`;
             participationCount.textContent = studentProgress;
 
             if (studentProgress === 0 && hasParticipated) {
@@ -150,6 +150,7 @@ function addStudent(name = "", progress = 0) {
 
 // Función para restablecer todo el progreso a cero, mantener los nombres y recargar la página
 function resetProgress() {
+    if (!confirm("¿Estás seguro de que deseas reiniciar el progreso de todos los estudiantes?")) return;
     const studentsContainer = document.getElementById('students-container');
     const studentItems = studentsContainer.getElementsByClassName('student-item');
     
@@ -160,7 +161,7 @@ function resetProgress() {
         const participationCount = studentItem.querySelector('.participation-count');
 
         progressBar.style.width = '0%';
-        progressText.textContent = '0 / 20';
+        progressText.textContent = '0 / 10';
         participationCount.textContent = '0';
     });
 
