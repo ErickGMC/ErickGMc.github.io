@@ -15,27 +15,34 @@ body {
 }
 
 .container {
+    display: grid;
+    grid-template-areas:
+        "image1 title image2"
+        "image3 title image4";
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
     text-align: center;
 }
 
 h1 {
-    font-size: 2.5em;
+    grid-area: title;
+    font-size: 2em;
     color: #4CAF50;
-    margin-bottom: 20px;
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    justify-items: center;
+    margin: 0;
+    text-align: center;
+    max-width: 400px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .image-card {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
 }
@@ -44,8 +51,15 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .image-card:hover {
     transform: scale(1.1);
 }
+
+/* Define la posición de cada imagen alrededor del título */
+.image1 { grid-area: image1; }
+.image2 { grid-area: image2; }
+.image3 { grid-area: image3; }
+.image4 { grid-area: image4; }
